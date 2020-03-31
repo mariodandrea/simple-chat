@@ -12,8 +12,10 @@ app.get('/', (req, res) => {
 });
 
 io.sockets.on('connection', (socket) => {
-  connections.push(socket);
-  console.log(connections.length + '  connections');
+  // Connect
+  socket.on('chat message', function(msg) {
+    console.log('message: ' + msg);
+  });
 });
 
 server.listen(PORT, () => console.log(`Listening on Port: ${PORT}`));
